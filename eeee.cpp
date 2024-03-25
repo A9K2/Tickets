@@ -16,6 +16,8 @@ public:
 	}
 };
 int main() {
+	SetConsoleOutputCP(1251);
+    	SetConsoleCP(1251);
 	Movie SpiderMan;
 	SpiderMan.title = "SpiderMan";
 	SpiderMan.director = "John Weak";
