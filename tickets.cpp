@@ -36,11 +36,51 @@ public:
     string director;
     string genre;
     float duration;
+
+    Movie() : title(""), director(""), genre(""), duration(0.0) {}
+    Movie(string title, string director, string genre, float duration) : title(title), director(director), genre(genre), duration(duration) {}
+    
     void Print() {
         cout << "Title:" << title << "\nDirector:" << director << "\nGenre:" << genre << "\nDuration:" << duration << " hours" << endl;
     }
 };
 
+class TicketPurchase {
+private:
+    Movie movie;
+    int numberOfTickets;
+    float ticketPrice;
+
+public:
+    TicketPurchase(Movie movie, int numberOfTickets, float ticketPrice) : movie(movie), numberOfTickets(numberOfTickets), ticketPrice(ticketPrice) {}
+
+    Movie getMovie() const {
+        return movie;
+    }
+
+    int getNumberOfTickets() const {
+        return numberOfTickets;
+    }
+
+    float getTicketPrice() const {
+        return ticketPrice;
+    }
+
+    float getTotalPrice() const {
+        return numberOfTickets * ticketPrice;
+    }
+
+    void generateReceipt() const {
+        cout << "Квитанція:" << endl;
+        cout << "Фільм: " << movie.title << endl;
+        cout << "Режисер: " << movie.director << endl;
+        cout << "Жанр: " << movie.genre << endl;
+        cout << "Тривалість: " << movie.duration << " годин" << endl;
+        cout << "Кількість квитків: " << numberOfTickets << endl;
+        cout << "Ціна квитка: $" << ticketPrice << endl;
+        cout << "Загальна вартість: $" << getTotalPrice() << endl;
+    }
+};
 
 int main() {
     SetConsoleOutputCP(1251);
@@ -84,7 +124,30 @@ int main() {
     default:
         break;
     }
-    
+
+    int numOfTickets;
+    cout << "Введіть кількість квитків, які ви хочете придбати: ";
+    cin >> numOfTickets;
+
+    float ticketPrices[] = { 10.0, 8.0, 12.0 };
+    float selectedMoviePrice = ticketPrices[number - 1];
+
+    TicketPurchase purchase((number == 1) ? SpiderMan : (number == 2) ? Berlin : Duna, numOfTickets, selectedMoviePrice);
+
+    cout << "Ви купуєте " << numOfTickets << " квитки на " << purchase.getMovie().title << "." << endl;
+    cout << "Загальна вартість: $" << purchase.getTotalPrice() << endl;
+
+    char confirmation;
+    cout << "Підтвердіть покупку (Y/N): ";
+    cin >> confirmation;
+
+    if (confirmation == 'Y' || confirmation == 'y') {
+        cout << "Покупку підтверджено. Насолоджуйтесь фільмом!" << endl;
+        purchase.generateReceipt();
+    }
+    else {
+        cout << "Purchase canceled." << endl;
+    }
 
     return 0;
 }
