@@ -37,9 +37,6 @@ public:
     string genre;
     float duration;
 
-    Movie() : title(""), director(""), genre(""), duration(0.0) {}
-    Movie(string title, string director, string genre, float duration) : title(title), director(director), genre(genre), duration(duration) {}
-    
     void Print() {
         cout << "Title:" << title << "\nDirector:" << director << "\nGenre:" << genre << "\nDuration:" << duration << " hours" << endl;
     }
