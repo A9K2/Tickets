@@ -68,7 +68,7 @@ public:
     }
 
     void generateReceipt() const {
-        cout << "Квитанція:" << endl;
+        cout << "\nКвитанція:" << endl;
         cout << "Фільм: " << movie.title << endl;
         cout << "Режисер: " << movie.director << endl;
         cout << "Жанр: " << movie.genre << endl;
@@ -123,7 +123,7 @@ int main() {
     }
 
     int numOfTickets;
-    cout << "Введіть кількість квитків, які ви хочете придбати: ";
+    cout << "\nВведіть кількість квитків, які ви хочете придбати: ";
     cin >> numOfTickets;
 
     float ticketPrices[] = { 10.0, 8.0, 12.0 };
@@ -132,14 +132,14 @@ int main() {
     TicketPurchase purchase((number == 1) ? SpiderMan : (number == 2) ? Berlin : Duna, numOfTickets, selectedMoviePrice);
 
     cout << "Ви купуєте " << numOfTickets << " квитки на " << purchase.getMovie().title << "." << endl;
-    cout << "Загальна вартість: $" << purchase.getTotalPrice() << endl;
+    cout << "Загальна вартість: $" << purchase.getTotalPrice()<< endl;
 
     char confirmation;
-    cout << "Підтвердіть покупку (Y/N): ";
+    cout << "\nПідтвердіть покупку (Y/N): ";
     cin >> confirmation;
 
     if (confirmation == 'Y' || confirmation == 'y') {
-        cout << "Покупку підтверджено. Насолоджуйтесь фільмом!" << endl;
+        cout << "\nПокупку підтверджено. Насолоджуйтесь фільмом!" << endl;
         purchase.generateReceipt();
     }
     else {
