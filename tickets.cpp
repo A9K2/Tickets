@@ -143,7 +143,8 @@ int main() {
         purchase.generateReceipt();
     }
     else {
-        cout << "Purchase canceled." << endl;
+        cout << "Відмінено" << endl;
+ cout << "Запустіть програму знов для повторного вибору фільму.Вибачаємось за тимчасові незручності!T~T" << endl;
     }
 
     return 0;
