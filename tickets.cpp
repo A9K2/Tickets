@@ -37,8 +37,6 @@ public:
     string genre;
     float duration;
 
-    Movie(string title, string director, string genre, float duration) : title(title), director(director), genre(genre), duration(duration) {}
-
     void Print() {
         cout << "Title:" << title << "\nDirector:" << director << "\nGenre:" << genre << "\nDuration:" << duration << " hours" << endl;
     }
@@ -79,136 +77,91 @@ public:
         cout << "Ціна квитка: $" << ticketPrice << endl;
         cout << "Загальна вартість: $" << getTotalPrice() << endl;
     }
-
-    void refundTickets(int numTicketsToRefund, const Movie& refundMovie) {
-            if (refundMovie.title != movie.title) { // Check if the refund movie matches the purchased movie
-                cout << "Помилка: Ви не можете повернути квитки для іншого фільму." << endl;
-            }
-    
-            if (numTicketsToRefund > numberOfTickets) {
-                cout << "Помилка: Недостатньо квитків для повернення." << endl;
-            }
-    
-            float refundAmount = numTicketsToRefund * ticketPrice;
-            numberOfTickets -= numTicketsToRefund;
-    
-            cout << "Квитки успішно повернуті." << endl;
-            cout << "Сума повернення: $" << refundAmount << endl;
-        }
-
 };
+void displayMenu() {
+    system("cls");
+ 
+ 
+}
+
+
 
 int main() {
     SetConsoleOutputCP(1251);
     SetConsoleCP(1251);
-
+    do {
+    displayMenu();
     MovieSchedule schedule;
-    vector<string> movies = { "Людина Павук", "Я, Побєда, і Берлін", "Дюна" };
+    vector<string> movies = { "Людина Павук", "Я,Побєда, і Берлін", "Дюна" };
 
-    vector<Movie> movieArray = {
-        Movie("Людина Павук", "John Weak", "Mystic", 1.5),
-        Movie("Я, Побєда, і Берлін", "Emil", "Mystic", 1.5),
-        Movie("Дюна", "Danil", "Mystic", 1.5)
-    };
-    float ticketPrices[] = { 10.0, 8.0, 12.0 };
-    
-    TicketPurchase* purchase = nullptr;
-    
-    MovieSchedule schedule;
     schedule.display(movies);
 
-    while (true) {
-        
 
-        cout << "\nВведіть команду ('buy - 1', 'refund - 2', 'exit - 3'): ";
-        int command;
-        cin >> command;
+    Movie SpiderMan, Berlin, Duna;
+    int number;
 
-        switch (command) {
-        case 1: {
-            
-            int number;
-            cout << "Оберіть фільм: ";
-            cin >> number;
+    cout << "Оберіть фільм" << endl;
+    cin >> number;
 
-            if (number < 1 || number > movieArray.size()) {
-                cout << "Недійсний вибір фільму." << endl;
-                continue;
-            }
-
-            Movie selectedMovie = movieArray[number - 1];
-            selectedMovie.Print();
-
-            int numOfTickets;
-            cout << "\nВведіть кількість квитків, які ви хочете придбати: ";
-            cin >> numOfTickets;
-            
-            float selectedMoviePrice = ticketPrices[number - 1];
-
-            // Update the purchase object
-            purchase = new TicketPurchase(selectedMovie, numOfTickets, selectedMoviePrice);
-
-            cout << "Ви купуєте " << numOfTickets << " квитки на " << purchase->getMovie().title << "." << endl;
-            cout << "Загальна вартість: $" << purchase->getTotalPrice() << endl;
-
-            char confirmation;
-            cout << "\nПідтвердіть покупку (Y/N): ";
-            cin >> confirmation;
-
-            if (confirmation == 'Y' || confirmation == 'y') {
-                cout << "\nПокупку підтверджено. Насолоджуйтесь фільмом!" << endl;
-                purchase->generateReceipt();
-            }
-            else {
-                cout << "Відмінено" << endl;
-            }
-
-            break;
-        }
-        case 2: {
-            if (purchase == nullptr) {
-                cout << "Ви ще не придбали квитки. Немає що повертати." << endl;
-                break;
-            }
-
-            cout << "\nВиберіть фільм для повернення квитків:" << endl;
-            for (int i = 0; i < movieArray.size(); ++i) {
-                cout << i + 1 << ") " << movieArray[i].title << endl;
-            }
-
-            int refundMovieChoice;
-            cout << "Оберіть фільм: ";
-            cin >> refundMovieChoice;
-
-            if (refundMovieChoice < 1 || refundMovieChoice > movieArray.size()) {
-                cout << "Недійсний вибір фільму." << endl;
-                continue;
-            }
-
-            Movie refundMovie = movieArray[refundMovieChoice - 1];
-
-            if (refundMovie.title != purchase->getMovie().title) {
-                cout << "Помилка: Ви не можете повернути квитки для іншого фільму." << endl;
-                break;
-            }
-
-            int numTicketsToRefund;
-            cout << "Скільки квитків ви хочете повернути для фільму '" << refundMovie.title << "'? \n";
-            cin >> numTicketsToRefund;
-
-            purchase->refundTickets(numTicketsToRefund, refundMovie);
-
-            break;
-        }
-        case 3: {
-            return 0;
-        }
-        default: {
-            cout << "Невідома команда. Спробуйте ще раз." << endl;
-            break;
-        }
-        }
+    switch (number)
+    {
+    case 1:
+        SpiderMan.title = movies[number - 1];
+        SpiderMan.director = "John Weak";
+        SpiderMan.genre = "Mystic";
+        SpiderMan.duration = 1.50;
+        SpiderMan.Print();
+        break;
+    case 2:
+        Berlin.title = movies[number - 1];
+        Berlin.director = "Emil";
+        Berlin.genre = "Mystic";
+        Berlin.duration = 1.50;
+        Berlin.Print();
+        break;
+    case 3:
+        Duna.title = movies[number - 1];
+        Duna.director = "Danil";
+        Duna.genre = "Mystic";
+        Duna.duration = 1.50;
+        Duna.Print();
+        break;
+    default:
+       cout << "Invalid choice! Please try again.\n";
+        break;
     }
+
+    int numOfTickets;
+    cout << "\nВведіть кількість квитків, які ви хочете придбати: ";
+    cin >> numOfTickets;
+
+    float ticketPrices[] = { 10.0, 8.0, 12.0 };
+    float selectedMoviePrice = ticketPrices[number - 1];
+
+    TicketPurchase purchase((number == 1) ? SpiderMan : (number == 2) ? Berlin : Duna, numOfTickets, selectedMoviePrice);
+
+    cout << "Ви купуєте " << numOfTickets << " квитки на " << purchase.getMovie().title << "." << endl;
+    cout << "Загальна вартість: $" << purchase.getTotalPrice() << endl;
+
+    char confirmation;
+    cout << "\nПідтвердіть покупку (Y/N): ";
+    cin >> confirmation;
+
+    if (confirmation == 'Y' || confirmation == 'y') {
+        cout << "\nПокупку підтверджено. Насолоджуйтесь фільмом!" << endl;
+        
+        purchase.generateReceipt();
+        cout << "\nПеренесення у головне меню!!" << endl;
+    }
+    else {
+        cout << "Відмінено!Повернення у головне меню!" << endl;
+      
+       
+       
+    }
+    cout << "\nНатисніть Ентер для продовження...";
+    cin.ignore();
+    cin.get();
+    } while (true);
     return 0;
 }
-
