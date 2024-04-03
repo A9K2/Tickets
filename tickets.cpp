@@ -25,8 +25,14 @@ public:
                 i++;
             }
         }
+        cout << "________________________________________________________________________________________\n";
     }
 
+    /*void addMovie(const string& movie) {
+        movieList.push_back(movie);
+        cout << "Фільм '" << movie << "' був доданий до афіші." << endl;
+    }
+    */
 };
 
 
@@ -40,7 +46,7 @@ public:
     Movie(string title, string director, string genre, float duration) : title(title), director(director), genre(genre), duration(duration) {}
 
     void Print() {
-        cout << "Title:" << title << "\nDirector:" << director << "\nGenre:" << genre << "\nDuration:" << duration << " hours" << endl;
+        cout << "\nTitle:" << title << "\nDirector:" << director << "\nGenre:" << genre << "\nDuration:" << duration << " hours" << endl;
     }
 };
 
@@ -78,10 +84,11 @@ public:
         cout << "Кількість квитків: " << numberOfTickets << endl;
         cout << "Ціна квитка: $" << ticketPrice << endl;
         cout << "Загальна вартість: $" << getTotalPrice() << endl;
+        cout << "________________________________________________________________________________________" << endl;
     }
 
     void refundTickets(int numTicketsToRefund, const Movie& refundMovie) {
-        if (refundMovie.title != movie.title) { 
+        if (refundMovie.title != movie.title) {
             cout << "Помилка: Ви не можете повернути квитки для іншого фільму." << endl;
         }
 
@@ -110,15 +117,15 @@ int main() {
 
     vector<Movie> movieArray = {
         Movie("Людина Павук", "John Weak", "Mystic", 1.5),
-        Movie("Я, Побєда, і Берлін", "Emil", "Mystic", 1.5),
+        Movie("Я, Побєда, і Берлін", "Ольга Ряшина", "Mystic", 1.5),
         Movie("Дюна", "Danil", "Mystic", 1.5)
     };
     float ticketPrices[] = { 10.0, 8.0, 12.0 };
 
     TicketPurchase* purchase = nullptr;
-    
+
     MovieSchedule schedule;
-    
+
 
     do {
         displayMenu();
@@ -129,7 +136,7 @@ int main() {
 
         switch (command) {
         case 1: {
-            
+
             int number;
             cout << "Оберіть фільм: ";
             cin >> number;
@@ -158,7 +165,7 @@ int main() {
             cin >> confirmation;
 
             if (confirmation == 'Y' || confirmation == 'y') {
-                cout << "\nПокупку підтверджено. Насолоджуйтесь фільмом!" << endl;
+                cout << "\nПокупку підтверджено. Насолоджуйтесь фільмом!" << endl << "________________________________________________________________________________________" << endl;
                 purchase->generateReceipt();
             }
             else {
@@ -205,10 +212,26 @@ int main() {
         case 3: {
             return 0;
         }
-        default: {
-            cout << "Невідома команда. Спробуйте ще раз." << endl;
+        /*case 4: {
+            int numberOneOrTwo;
+            cout << "Додати(1) чи видалити(2)?";
+            cin >> numberOneOrTwo;
+
+            if (numberOneOrTwo == 1)
+            {
+                string numMove;
+                cout << "Вкажіть назву фільма ";
+                cin >> numMove;
+                schedule.addMovie(numMove);
+                schedule.display(movies);
+                break;
+            }
+            else {
+                cout << "Немає такого варіанту";
+            }
             break;
         }
+        */
         }
         cout << "\nНатисніть Enter для продовження...";
         cin.ignore();
@@ -216,4 +239,5 @@ int main() {
     } while (true);
     return 0;
 }
+
 
