@@ -81,20 +81,20 @@ public:
     }
 
     void refundTickets(int numTicketsToRefund, const Movie& refundMovie) {
-            if (refundMovie.title != movie.title) { 
-                cout << "Помилка: Ви не можете повернути квитки для іншого фільму." << endl;
-            }
-    
-            if (numTicketsToRefund > numberOfTickets) {
-                cout << "Помилка: Недостатньо квитків для повернення." << endl;
-            }
-    
-            float refundAmount = numTicketsToRefund * ticketPrice;
-            numberOfTickets -= numTicketsToRefund;
-    
-            cout << "Квитки успішно повернуті." << endl;
-            cout << "Сума повернення: $" << refundAmount << endl;
+        if (refundMovie.title != movie.title) { 
+            cout << "Помилка: Ви не можете повернути квитки для іншого фільму." << endl;
         }
+
+        if (numTicketsToRefund > numberOfTickets) {
+            cout << "Помилка: Недостатньо квитків для повернення." << endl;
+        }
+
+        float refundAmount = numTicketsToRefund * ticketPrice;
+        numberOfTickets -= numTicketsToRefund;
+
+        cout << "Квитки успішно повернуті." << endl;
+        cout << "Сума повернення: $" << refundAmount << endl;
+    }
 };
 void displayMenu() {
     system("cls");
